@@ -1,5 +1,6 @@
 {
   "build": {
+    "context": "../",
     "dockerfile": "Dockerfile"
   },
   "customizations": {
@@ -7,7 +8,6 @@
       "extensions": []
     }
   },
-  "forwardPorts": [
-    3000
-  ]
+  "image": "launch_simple_dev:latest",
+  "name": "launch_simple"
 }
