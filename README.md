@@ -1,6 +1,5 @@
 # Launch Simple
-[![pre_commit](https://github.com/lgulich/launch_simple/actions/workflows/ci.yml/badge.svg)](https://github.com/lgulich/launch_simple/actions/workflows/ci.yml)
-[![build and test](https://github.com/lgulich/launch_simple/actions/workflows/ci.yml/badge.svg)](https://github.com/lgulich/launch_simple/actions/workflows/ci.yml)
+[![CI](https://github.com/lgulich/launch_simple/actions/workflows/ci.yml/badge.svg)](https://github.com/lgulich/launch_simple/actions/workflows/ci.yml)
 
 A tool to simplify ROS2 launch files.
 
