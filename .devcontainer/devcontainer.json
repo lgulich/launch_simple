@@ -10,6 +10,9 @@
   },
   "image": "launch_simple_dev:latest",
   "name": "launch_simple",
+  "runArgs": [
+    "--network=host"
+  ],
   "workspaceFolder": "/workspace",
   "workspaceMount": "source=${localWorkspaceFolder},target=/workspace/src,type=bind"
 }

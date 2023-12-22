@@ -3,7 +3,7 @@ import os
 from ament_index_python import get_package_share_directory
 from launch import LaunchDescription
 from launch.actions import (DeclareLaunchArgument, ExecuteProcess, GroupAction,
-                            IncludeLaunchDescription)
+                            IncludeLaunchDescription, Shutdown)
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import (ComposableNodeContainer, LoadComposableNodes, Node,
@@ -21,15 +21,15 @@ def generate_launch_description():
     chatter_namespace_value = LaunchConfiguration('chatter_namespace')
 
     # Add a classic node.
-    turtlesim = Node(
-        package='turtlesim',
-        executable='turtlesim_node',
-        name='sim',
-        namespace='turtlesim_ns',
+    talker = Node(
+        package='demo_nodes_cpp',
+        executable='talker',
+        name='talker',
+        namespace='talker_ns',
     )
 
     # Add an executable.
-    rosbag_play = ExecuteProcess(cmd=['echo', 'Hello World!'])
+    rosbag_play = ExecuteProcess(cmd=['sleep', '10s'], on_exit=Shutdown())
 
     # Add a composable node and node container in a single step.
     composable_node_a = ComposableNode(
@@ -81,7 +81,7 @@ def generate_launch_description():
 
     return LaunchDescription([
         chatter_namespace_arg,
-        turtlesim,
+        talker,
         rosbag_play,
         container_a,
         container_b,

@@ -4,17 +4,17 @@ from launch_simple.all_types import *
 
 def generate_launch_simple_description(ctx: ls.Context):
     """
-    Example of a fairly complicated launch description using the simple python launch syntax.
+    Example of a fairly complicated launch description using the launch_simple syntax.
     """
     # Add a parameter.
     ctx.add_argument('chatter_namespace', type=str, default='chatter_ns')
 
     # Add a classic node.
     ctx.add_action(
-        Node(name='sim', package='turtlesim', executable='turtlesim_node', namespace='foo'))
+        Node(name='talker', package='demo_nodes_cpp', executable='talker', namespace='talker_ns'))
 
     # Add an executable.
-    ctx.add_action(ExecuteProcess(cmd=['echo', 'Hello World!']))
+    ctx.add_action(ExecuteProcess(cmd=['sleep', '10s'], on_exit=Shutdown()))
 
     # Add a composable node and node container in a single step.
     ctx.add_composable_node(
@@ -43,10 +43,7 @@ def generate_launch_simple_description(ctx: ls.Context):
     ctx.add_to_container('container_b', [ctx.composable_nodes.composable_node_b])
 
     # Include an external launch file, either python, xml.
-    ctx.include_launch_file(
-        'demo_nodes_cpp',
-        'launch/topics/talker_listener.launch.xml',
-    )
+    ctx.include_launch_file('demo_nodes_cpp', 'launch/topics/talker_listener.launch.xml')
 
     # Pass parameters/remappings to a launch file.
     ctx.include_launch_file(
@@ -61,5 +58,5 @@ def generate_launch_simple_description(ctx: ls.Context):
 
 
 def generate_launch_description():
-    """ Extract the default launch description from the simple launch description. """
+    """ Extract the default launch description from the launch_simple description. """
     return ls.unsimplify(generate_launch_simple_description)

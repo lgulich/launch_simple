@@ -25,7 +25,6 @@ jobs:
           runCmd: |
             colcon build
             colcon test
-            source /opt/ros/humble/setup.bash
             source install/setup.bash
-            timeout --preserve-status 10s ros2 launch launch_simple default.launch.py
-            timeout --preserve-status 10s ros2 launch launch_simple simple.launch.py
+            ros2 launch launch_simple default.launch.py
+            ros2 launch launch_simple simple.launch.py

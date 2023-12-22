@@ -4,12 +4,11 @@ Use this file to import all regularly used launch types in one go.
 """
 # pylint: disable=unused-import
 
-from launch import LaunchDescription
-from launch.actions import (DeclareLaunchArgument, ExecuteProcess, GroupAction,
-                            IncludeLaunchDescription)
-from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch.substitutions import LaunchConfiguration, TextSubstitution
-from launch_ros.actions import (ComposableNodeContainer, LoadComposableNodes, Node,
-                                PushRosNamespace, SetRemap)
-from launch_ros.descriptions import ComposableNode
-from launch_xml.launch_description_sources import XMLLaunchDescriptionSource
+from launch import *
+from launch.actions import *
+from launch.launch_description_sources import *
+from launch.substitutions import *
+from launch_ros import *
+from launch_ros.actions import *
+from launch_ros.descriptions import *
+from launch_xml.launch_description_sources import *
