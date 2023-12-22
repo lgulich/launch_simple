@@ -18,6 +18,7 @@ RUN apt-get install -y \
     ros-humble-composition \
     ros-humble-demo-nodes-cpp \
     ros-humble-launch-testing \
+    ros-humble-launch-pytest \
     ros-humble-rclcpp-components \
     ros-humble-turtlesim
 
@@ -27,7 +28,6 @@ RUN chown -R $USER_UID:$USER_GID /workspace
 
 ENV SHELL /bin/bash
 USER $USERNAME
-
 
 COPY .devcontainer/entrypoint.sh /entrypoint.sh
 ENTRYPOINT /entrypoint.sh
