@@ -1,5 +1,6 @@
 # Launch Simple
 [![CI](https://github.com/lgulich/launch_simple/actions/workflows/ci.yml/badge.svg)](https://github.com/lgulich/launch_simple/actions/workflows/ci.yml)
+[![Pre-commit Dependency Update](https://github.com/lgulich/launch_simple/actions/workflows/pre_commit_dependency_update.yml/badge.svg)](https://github.com/lgulich/launch_simple/actions/workflows/pre_commit_dependency_update.yml)
 
 A tool to simplify ROS2 launch files.
 
