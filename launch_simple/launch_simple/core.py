@@ -50,7 +50,7 @@ class Context:
     """Context used to build a launch_simple launch description."""
 
     def __init__(self):
-        self.params = DotDict()
+        self.arguments = DotDict()
 
         self.actions = DotDict()
         self.composable_nodes = DotDict()
@@ -74,7 +74,7 @@ class Context:
         self.add_action(arg)
 
         value = LaunchConfiguration(name)
-        return self.params.set(name, value)
+        return self.arguments.set(name, value)
 
     def add_action(self, action):
         """ Add any existing launch action to the launch description. """

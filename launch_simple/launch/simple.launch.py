@@ -53,7 +53,7 @@ def generate_launch_simple_description(ctx: ls.Context):
         'demo_nodes_cpp',
         'launch/topics/talker_listener.launch.xml',
         launch_arguments={'dummy': 'dummy_value'},
-        namespace=ctx.params.chatter_namespace,
+        namespace=ctx.arguments.chatter_namespace,
         remappings={
             'chatter': 'other_chatter',
         },
