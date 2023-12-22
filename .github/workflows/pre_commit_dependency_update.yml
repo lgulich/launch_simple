@@ -1,12 +1,10 @@
 name: Pre-commit Dependency Update
-
 on:
   # Every day at midnight.
   schedule:
     - cron: "0 0 * * *"
   # On demand.
   workflow_dispatch:
-
 jobs:
   auto-update:
     runs-on: ubuntu-latest
