@@ -41,4 +41,3 @@ def generate_launch_simple_description(ctx: ls.Context):
 def generate_launch_description():
     return ls.unsimplify(generate_launch_simple_description)
 ```
-
