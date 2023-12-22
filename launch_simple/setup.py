@@ -7,7 +7,7 @@ PACKAGE_NAME = 'launch_simple'
 
 setup(
     name=PACKAGE_NAME,
-    version='0.0.0',
+    version='0.0.1',
     packages=[PACKAGE_NAME],
     data_files=[
         ('share/ament_index/resource_index/packages', ['resource/' + PACKAGE_NAME]),
