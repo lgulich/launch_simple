@@ -1,0 +1,21 @@
+name: Pre-commit Dependency Update
+on:
+  # Every day at midnight.
+  schedule:
+    - cron: "0 0 * * *"
+  # On demand.
+  workflow_dispatch:
+jobs:
+  auto-update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+      - uses: browniebroke/pre-commit-autoupdate-action@main
+      - uses: peter-evans/create-pull-request@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: update/pre-commit-hooks
+          title: Update pre-commit hooks
+          commit-message: "[pre-commite] Bump dependencies"
+          body: Bump pre-commit hooks to latest version.
