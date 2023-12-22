@@ -1,17 +1,21 @@
 import os
 
 from ament_index_python import get_package_share_directory
-
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, GroupAction, ExecuteProcess
+from launch.actions import (DeclareLaunchArgument, ExecuteProcess, GroupAction,
+                            IncludeLaunchDescription)
 from launch.launch_description_sources import PythonLaunchDescriptionSource
-from launch_xml.launch_description_sources import XMLLaunchDescriptionSource
-from launch.substitutions import LaunchConfiguration, TextSubstitution
-from launch_ros.actions import Node, ComposableNodeContainer, LoadComposableNodes, PushRosNamespace, SetRemap
+from launch.substitutions import LaunchConfiguration
+from launch_ros.actions import (ComposableNodeContainer, LoadComposableNodes, Node,
+                                PushRosNamespace, SetRemap)
 from launch_ros.descriptions import ComposableNode
+from launch_xml.launch_description_sources import XMLLaunchDescriptionSource
 
 
 def generate_launch_description():
+    """
+    Example of a fairly complicated launch description using the default python launch syntax.
+    """
     # Add a parameter.
     chatter_namespace_arg = DeclareLaunchArgument('chatter_namespace', default_value='chatter_ns')
     chatter_namespace_value = LaunchConfiguration('chatter_namespace')

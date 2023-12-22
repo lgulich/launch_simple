@@ -1,0 +1,10 @@
+[FORMAT]
+max-line-length=100
+
+disable=dangerous-default-value,
+        import-error,
+        missing-module-docstring,
+        no-name-in-module,
+        too-many-arguments,
+        unused-wildcard-import,
+        wildcard-import,

@@ -1,6 +1,7 @@
-from setuptools import setup
-import os
 import glob
+import os
+
+from setuptools import setup
 
 PACKAGE_NAME = 'launch_simple'
 

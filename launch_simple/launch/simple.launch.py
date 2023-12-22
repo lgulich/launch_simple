@@ -1,10 +1,13 @@
-from launch_simple.all_types import *
 import launch_simple as ls
+from launch_simple.all_types import *
 
 
 def generate_launch_simple_description(ctx: ls.Context):
+    """
+    Example of a fairly complicated launch description using the simple python launch syntax.
+    """
     # Add a parameter.
-    ctx.add_parameter('chatter_namespace', type=str, default='chatter_ns')
+    ctx.add_argument('chatter_namespace', type=str, default='chatter_ns')
 
     # Add a classic node.
     ctx.add_action(
@@ -58,4 +61,5 @@ def generate_launch_simple_description(ctx: ls.Context):
 
 
 def generate_launch_description():
+    """ Extract the default launch description from the simple launch description. """
     return ls.unsimplify(generate_launch_simple_description)
