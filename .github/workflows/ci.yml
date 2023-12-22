@@ -5,6 +5,13 @@ on:
   push:
     branches: [master]
 jobs:
+  pre_commit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v3
+      - run: python3 -m pip install setuptools
+      - uses: pre-commit/action@v3.0.0
   build_and_test:
     runs-on: ubuntu-latest
     steps:
