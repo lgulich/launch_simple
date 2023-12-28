@@ -1,17 +1,13 @@
 <?xml version="1.0"?>
 <?xml-model href="http://download.ros.org/schema/package_format2.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="2">
-  <name>launch_simple</name>
+  <name>launch_simple_test_helpers</name>
   <version>0.0.1</version>
-  <description>A tool to simplify ROS2 launch files.</description>
+  <description>Launch files and nodes needed to test launch_simple.</description>
   <maintainer email="lionel.gulich@gmail.com">Lionel Gulich</maintainer>
   <license>TBD</license>
 
   <buildtool_depend>ament_python</buildtool_depend>
-
-  <test_depend>launch</test_depend>
-  <test_depend>launch_testing</test_depend>
-  <test_depend>launch_simple_test_helpers</test_depend>
 
   <export>
     <build_type>ament_python</build_type>

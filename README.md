@@ -23,7 +23,10 @@ For an extended example see [simple.launch.py](launch_simple/launch/simple.launc
 import launch_simple as ls
 from launch_simple.all_types import *
 
-def generate_launch_simple_description(ctx: ls.Context):
+def generate_launch_simple_description():
+    # Create the launch context.
+    ctx = ls.Context()
+
     # Add a launch argument
     ctx.add_argument('chatter_namespace', type=str, default='chatter_ns')
 
@@ -38,6 +41,6 @@ def generate_launch_simple_description(ctx: ls.Context):
         },
     )
 
-def generate_launch_description():
-    return ls.unsimplify(generate_launch_simple_description)
+    # Convert the launch_simple context to a default launch_description.
+    return ctx.get_launch_description()
 ```

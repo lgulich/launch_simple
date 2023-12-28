@@ -1,0 +1,7 @@
+<launch>
+  <arg name="message_content" default="default_message_content"/>
+
+  <node name="example_node" pkg="launch_simple_test_helpers" exec="example_node" output="screen">
+      <param name="message_content" value="$(var message_content)"/>
+  </node>
+</launch>

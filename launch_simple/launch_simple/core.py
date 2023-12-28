@@ -1,6 +1,7 @@
 import os
 import pathlib
-from typing import Dict, List, Callable, Optional
+import builtins
+from typing import Dict, List, Callable, Optional, Any
 
 from ament_index_python import get_package_share_directory
 from launch_simple.all_types import *
@@ -45,6 +46,11 @@ class DotDict:
         """Access a value by its key."""
         return getattr(self, key)
 
+    def __getattr__(self, name):
+        """Will only get called for undefined attributes"""
+        warnings.warn(f"No member '{name}' contained in DotDict.")
+        raise f'Member {name} not found'
+
 
 class Context:
     """Context used to build a launch_simple launch description."""
@@ -59,14 +65,20 @@ class Context:
             self,
             name: str,
             type: Optional[Callable] = None,  #pylint: disable=redefined-builtin,unused-argument
-            default: Optional[str] = None,
+            default: Optional[Any] = None,
             description: Optional[str] = None,
             choices: Optional[str] = None,
             **kwargs):
         """ Add a launch argument to the launch description. """
+        if default is not None:
+            default_type = builtins.type(default)
+        if type is None and default is not None:
+            type = default_type
+        if type is not None and default is not None:
+            assert type == default_type, "'type' and 'type(default)' are not matching.'"
         arg = DeclareLaunchArgument(
             name,
-            default_value=default,
+            default_value=str(default),
             description=description,
             choices=choices,
             **kwargs,
@@ -192,12 +204,3 @@ class Context:
         """ Use this method to convert launch_simple to a default launch description. """
         all_actions = list(self.actions.values())
         return LaunchDescription(all_actions)
-
-
-def unsimplify(generate_simple_launch_description: Callable[[Context], None]) -> LaunchDescription:
-    """
-    Convert a function with a simple launch description to the default launch description.
-    """
-    ctx = Context()
-    generate_simple_launch_description(ctx)
-    return ctx.get_launch_description()

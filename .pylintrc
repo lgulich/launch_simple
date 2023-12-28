@@ -2,10 +2,11 @@
 max-line-length=100
 
 disable=dangerous-default-value,
+        duplicate-code,
         import-error,
         missing-module-docstring,
         no-name-in-module,
         too-many-arguments,
-        unused-wildcard-import,
         undefined-variable,
+        unused-wildcard-import,
         wildcard-import,

@@ -3,7 +3,7 @@ import os
 
 from setuptools import setup
 
-PACKAGE_NAME = 'launch_simple'
+PACKAGE_NAME = 'launch_simple_test_helpers'
 
 setup(
     name=PACKAGE_NAME,
@@ -12,15 +12,16 @@ setup(
     data_files=[
         ('share/ament_index/resource_index/packages', ['resource/' + PACKAGE_NAME]),
         ('share/' + PACKAGE_NAME, ['package.xml']),
-        (os.path.join('share', PACKAGE_NAME, 'launch'), glob.glob('launch/*.launch.py')),
-        (os.path.join('share', PACKAGE_NAME, 'launch'), glob.glob('tests/*.launch.py')),
+        (os.path.join('share', PACKAGE_NAME, 'launch'), glob.glob('launch/*.launch.*')),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
     maintainer='Lionel Gulich',
     maintainer_email='lionel.gulich@gmail.com',
-    description='A tool to simplify ROS2 launch files',
+    description='Nodes and launch files used to test launch_simple.',
     license='TBD',
     tests_require=['pytest'],
-    entry_points={'console_scripts': []},
+    entry_points={
+        'console_scripts': ['example_node = launch_simple_test_helpers.example_node:main',],
+    },
 )
