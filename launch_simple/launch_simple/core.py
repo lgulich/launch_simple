@@ -1,49 +1,53 @@
 import os
 import pathlib
-from typing import Dict, List, Callable, Optional
+import builtins
+from typing import Dict, List, Callable, Optional, Any
 
 from ament_index_python import get_package_share_directory
 from launch_simple.all_types import *
-
-# from launch import LaunchDescription
-# from launch.actions import (DeclareLaunchArgument, ExecuteProcess, GroupAction,
-#                             IncludeLaunchDescription)
-# from launch.launch_description_sources import PythonLaunchDescriptionSource
-# from launch.substitutions import LaunchConfiguration, TextSubstitution
-# from launch_ros.actions import (ComposableNodeContainer, LoadComposableNodes, Node,
-#                                 PushRosNamespace, SetRemap)
-# from launch_ros.descriptions import ComposableNode
-# from launch_xml.launch_description_sources import XMLLaunchDescriptionSource
 
 
 class DotDict:
     """Dict-like class, that allows access to dict items with the dot notation."""
 
+    def __init__(self):
+        self._dict = {}
+
     def set(self, name, value):
         """Add a new key-value pair. The key is not allowed to exist yet."""
-        assert not hasattr(self, name), f"Item with name '{name}' already exists."
-        setattr(self, name, value)
+        assert not name in self._dict, f"Item with name '{name}' already exists."
+        self._dict[name] = value
         return value
+
+    def get(self, name):
+        """Access a value by it's key."""
+        return self._dict.get(name)
 
     def keys(self):
         """Get all keys in the dict."""
-        return self.__dict__.keys()
+        return self._dict.keys()
 
     def values(self):
         """Get all values in the dict."""
-        return self.__dict__.values()
+        return self._dict.values()
 
     def items(self):
         """Get tuples of keys and values in the dict."""
-        return self.__dict__.items()
+        return self._dict.items()
 
     def __len__(self):
         """Get number of items in dict."""
-        return self.__dict__.__len__()
+        return self._dict.__len__()
 
     def __getitem__(self, key):
         """Access a value by its key."""
-        return getattr(self, key)
+        return self.get(key)
+
+    def __getattr__(self, key):
+        """
+        Access a value by its key. Only added to keep pylint from complaining about missing members.
+        """
+        return self.get(key)
 
 
 class Context:
@@ -51,7 +55,6 @@ class Context:
 
     def __init__(self):
         self.arguments = DotDict()
-
         self.actions = DotDict()
         self.composable_nodes = DotDict()
 
@@ -59,14 +62,20 @@ class Context:
             self,
             name: str,
             type: Optional[Callable] = None,  #pylint: disable=redefined-builtin,unused-argument
-            default: Optional[str] = None,
+            default: Optional[Any] = None,
             description: Optional[str] = None,
             choices: Optional[str] = None,
             **kwargs):
         """ Add a launch argument to the launch description. """
+        if default is not None:
+            default_type = builtins.type(default)
+        if type is None and default is not None:
+            type = default_type
+        if type is not None and default is not None:
+            assert type == default_type, "'type' and 'type(default)' are not matching.'"
         arg = DeclareLaunchArgument(
             name,
-            default_value=default,
+            default_value=str(default),
             description=description,
             choices=choices,
             **kwargs,
@@ -192,12 +201,3 @@ class Context:
         """ Use this method to convert launch_simple to a default launch description. """
         all_actions = list(self.actions.values())
         return LaunchDescription(all_actions)
-
-
-def unsimplify(generate_simple_launch_description: Callable[[Context], None]) -> LaunchDescription:
-    """
-    Convert a function with a simple launch description to the default launch description.
-    """
-    ctx = Context()
-    generate_simple_launch_description(ctx)
-    return ctx.get_launch_description()
