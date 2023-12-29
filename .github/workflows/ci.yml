@@ -37,3 +37,12 @@ jobs:
             ros2 launch launch_simple test_arguments.launch.py
             ros2 launch launch_simple test_composable_node.launch.py
             ros2 launch launch_simple test_includes.launch.py
+      - name: Build Documentation
+        uses: devcontainers/ci@v0.3
+        with:
+          imageName: ghcr.io/lgulich/launch_simple
+          cacheFrom: ghcr.io/lgulich/launch_simple
+          push: never
+          runCmd: |
+            cd src
+            make html
