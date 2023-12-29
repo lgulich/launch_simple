@@ -1,4 +1,10 @@
+# Python
 __pycache__/
+
+# Colcon
 install/
 build/
 log/
+
+# Sphinx
+_build/
