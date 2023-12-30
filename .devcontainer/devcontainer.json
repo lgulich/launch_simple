@@ -9,6 +9,11 @@
     }
   },
   "image": "launch_simple_dev:latest",
+  "initializeCommand": "mkdir -p .cache/build && mkdir -p .cache/install",
+  "mounts": [
+    "source=${localWorkspaceFolder}/.cache/build,target=/workspace/build,type=bind,consistency=cached",
+    "source=${localWorkspaceFolder}/.cache/install,target=/workspace/install,type=bind,consistency=cached"
+  ],
   "name": "launch_simple",
   "runArgs": [
     "--network=host"

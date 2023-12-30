@@ -10,8 +10,6 @@ Welcome to launch_simple's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-   README.md
-
 
 API Documentation
 =================
