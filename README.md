@@ -44,3 +44,6 @@ def generate_launch_simple_description():
     # Convert the launch_simple context to a default launch_description.
     return ctx.get_launch_description()
 ```
+
+## Documentation
+Visit the documentation [here](https://lgulich.github.io/launch_simple/)
