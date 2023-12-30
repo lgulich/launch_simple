@@ -148,15 +148,15 @@ class Context:
 
         Args:
             path_or_package(str): Path of the launch file or the package that contains it. If this
-                                  is the path the 'package_relative_path' has to be 'None'.
+                is the path the 'package_relative_path' has to be 'None'.
             package_relative_path(str): Path of the launch file relative to it's package. Should
-                                        only be set if 'path_or_package' is set to a package.
+                only be set if 'path_or_package' is set to a package.
             file_type(str): File type of the included launch file. If set to 'auto' this will be
-                            inferred automatically.
+                inferred automatically.
             namespace(str): If set the included launch file will be pushed to this namespace.
             launch_arguments(Dict): Launch arguments for the included launch file.
             remappings(Dict[str,str]): Topic remappings that will be applied to the included launch
-                                       file.
+                file.
         """
         if os.path.isfile(path_or_package):
             # path_or_package is already a valid path, thus we use this directly.

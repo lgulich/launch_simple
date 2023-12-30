@@ -18,7 +18,7 @@ A tool to simplify ROS2 launch files.
     - [ ] Set all nodes to 'required', ie. fail the launch file if a node fails.
 
 ## Example
-For an extended example see [simple.launch.py](launch_simple/launch/simple.launch.py)
+For an extended example see [example_simple.launch.py](launch_simple/launch/example_simple.launch.py)
 ```py
 import launch_simple as ls
 from launch_simple.all_types import *

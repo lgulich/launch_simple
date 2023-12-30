@@ -10,6 +10,11 @@ RUN apt-get install -y \
     ros-humble-rclcpp-components \
     ros-humble-turtlesim
 
+RUN python3 -m pip install \
+    myst-parser \
+    sphinx \
+    sphinx-rtd-theme
+
 RUN mkdir -p /workspace/src
 WORKDIR /workspace
 
