@@ -5,6 +5,4 @@ __pycache__/
 install/
 build/
 log/
-
-# Sphinx
-_build/
+.cache/
