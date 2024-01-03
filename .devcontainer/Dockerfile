@@ -5,8 +5,6 @@ RUN apt-get install -y \
     python3-pip \
     ros-humble-composition \
     ros-humble-demo-nodes-cpp \
-    ros-humble-launch-testing \
-    ros-humble-launch-pytest \
     ros-humble-rclcpp-components \
     ros-humble-turtlesim
 

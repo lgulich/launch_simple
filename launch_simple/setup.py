@@ -21,6 +21,6 @@ setup(
     maintainer_email='lionel.gulich@gmail.com',
     description='A tool to simplify ROS2 launch files',
     license='TBD',
-    tests_require=['pytest'],
+    tests_require=[],
     entry_points={'console_scripts': []},
 )

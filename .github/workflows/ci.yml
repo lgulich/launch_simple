@@ -28,7 +28,9 @@ jobs:
           cacheFrom: ghcr.io/lgulich/launch_simple
           push: never
           runCmd: |
+            set -e
             colcon build
+            source install/setup.sh
             make -C src/launch_simple/doc html
       - name: Test
         uses: devcontainers/ci@v0.3
@@ -37,6 +39,7 @@ jobs:
           cacheFrom: ghcr.io/lgulich/launch_simple
           push: never
           runCmd: |
+            set -e
             colcon test
             ros2 launch launch_simple example_default.launch.py
             ros2 launch launch_simple example_simple.launch.py
