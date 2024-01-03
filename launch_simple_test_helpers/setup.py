@@ -20,7 +20,7 @@ setup(
     maintainer_email='lionel.gulich@gmail.com',
     description='Nodes and launch files used to test launch_simple.',
     license='TBD',
-    tests_require=['pytest'],
+    tests_require=[],
     entry_points={
         'console_scripts': ['example_node = launch_simple_test_helpers.example_node:main',],
     },
